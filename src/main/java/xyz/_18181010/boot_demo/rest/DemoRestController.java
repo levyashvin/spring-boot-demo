@@ -14,8 +14,14 @@ public class DemoRestController {
 
     // exposing '/' to return a string
     @GetMapping("hello")
-    public String getMethodName(@RequestParam String name) {
+    public String greetEndpoint(@RequestParam String name) {
         return new String("Hello " + name + "!\n\t-" + adminName);
+    }
+
+    // default endpoint
+    @GetMapping("/")
+    public String defaultEndpoint() {
+        return new String("Hello World");
     }
     
 }
