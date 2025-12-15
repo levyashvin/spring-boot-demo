@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import xyz._18181010.boot_demo.common.BaseClass;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class DemoRestController {
 
     // example of setter injection
     @Autowired
-    public void setClass2(BaseClass obj){
+    public void setClass2(@Qualifier("derivedClass1") BaseClass obj){
         derviedObj = obj;
     }
 
