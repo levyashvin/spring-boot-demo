@@ -2,6 +2,7 @@ package xyz._18181010.boot_demo.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import tools.jackson.core.ObjectReadContext.Base;
 import xyz._18181010.boot_demo.common.BaseClass;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,17 @@ public class DemoRestController {
     @GetMapping("/check")
     public String checkScope() {
         return ""+(derviedObj == copyDerivedObj);
+    }
+    
+    BaseClass customClass;
+    @Autowired
+    public void setCustomClass(@Qualifier("customClass") BaseClass obj){
+        customClass = obj;
+    }
+
+    @GetMapping("/custom")
+    public String getMethodName() {
+        return customClass.getData();
     }
     
 }
