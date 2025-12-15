@@ -16,24 +16,30 @@ public class DemoRestController {
 
     // example of autowiring and dependency injection
     private BaseClass derviedObj;
+    private BaseClass copyDerivedObj;
 
     @Value("${admin.name}")
     private String adminName;
 
     
     // example of constructor injection
-    //@Autowired
-    //DemoRestController(BaseClass obj){
-    //    derviedObj = obj;
-    //}
+    @Autowired
+    DemoRestController(@Qualifier("derivedClass1") BaseClass obj){
+        derviedObj = obj;
+    }
+
+    DemoRestController(BaseClass obj1, BaseClass obj2){
+        derviedObj = obj1;
+        copyDerivedObj = obj2;
+    }
 
     // example of setter injection
     @Autowired
     public void setClass2(@Qualifier("derivedClass1") BaseClass obj){
-        derviedObj = obj;
+        copyDerivedObj = obj;
     }
 
-    @GetMapping("rand")
+    @GetMapping("/rand")
     public String randNum() {
         return derviedObj.getData();
     }
@@ -41,7 +47,7 @@ public class DemoRestController {
     
 
     // exposing '/' to return a string
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String greetEndpoint(@RequestParam String name) {
         return new String("Hello " + name + "!\n\t-" + adminName);
     }
@@ -50,6 +56,12 @@ public class DemoRestController {
     @GetMapping("/")
     public String defaultEndpoint() {
         return new String("Hello World");
+    }
+    
+    // check scope mapping
+    @GetMapping("/check")
+    public String checkScope() {
+        return ""+(derviedObj == copyDerivedObj);
     }
     
 }
