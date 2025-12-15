@@ -19,8 +19,16 @@ public class DemoRestController {
     @Value("${admin.name}")
     private String adminName;
 
+    
+    // example of constructor injection
+    //@Autowired
+    //DemoRestController(BaseClass obj){
+    //    derviedObj = obj;
+    //}
+
+    // example of setter injection
     @Autowired
-    DemoRestController(BaseClass obj){
+    public void setClass2(BaseClass obj){
         derviedObj = obj;
     }
 
