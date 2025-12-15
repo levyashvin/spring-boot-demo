@@ -1,4 +1,4 @@
-package xyz._18181010.boot_demo.entity;
+package xyz._18181010.boot_demo.common;
 
 public interface BaseClass {
     String getData();

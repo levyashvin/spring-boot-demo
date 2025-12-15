@@ -1,4 +1,4 @@
-package xyz._18181010.boot_demo;
+package xyz._18181010.boot_demo.common;
 
 import org.springframework.stereotype.Component;
 
